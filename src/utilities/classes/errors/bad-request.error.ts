@@ -1,6 +1,6 @@
-import {CustomError} from "./custom-error";
+import {AbstractBaseError} from "./abstract-base.error";
 
-export class BadRequestError extends CustomError {
+export class BadRequestError extends AbstractBaseError {
     statusCode = 400;
 
     constructor(public message: string) {

@@ -1,9 +1,9 @@
 import {AllowedGrantTypes} from "../../models/consts/grant-types.model";
 import {Request, Response, NextFunction} from "express";
 import {User} from "../../models/user.model";
-import {BadRequestError} from "../../errors/bad-request.error";
-import {HashText} from "../../utilities/hash-text.utility";
-import {getJwtToken} from "../../utilities/jwt.utility";
+import {BadRequestError} from "../../utilities/classes/errors/bad-request.error";
+import {HashText} from "../../utilities/helpers/hash-text.utility";
+import {getJwtToken} from "../../utilities/helpers/jwt.utility";
 
 type TokenNameControllerMapModel = {
     [key in keyof typeof AllowedGrantTypes | string]: (req: Request, res: Response, next?: NextFunction) => void;

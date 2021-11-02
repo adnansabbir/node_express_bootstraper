@@ -1,4 +1,4 @@
-import {connectToDb} from "./utilities/database.utility";
+import {connectToDb} from "./utilities/helpers/database.utility";
 import {app} from "./app";
 
 const port = process.env.PORT || 5000;

@@ -1,5 +1,5 @@
 import mongoose, {Schema, Model, Document} from 'mongoose';
-import {HashText} from "../utilities/hash-text.utility";
+import {HashText} from "../utilities/helpers/hash-text.utility";
 import {BaseModel, BaseMongooseDocModel, BaseMongooseSchema} from "./base-model/base.model";
 
 // An interface that describes the properties required to create a user
@@ -44,10 +44,10 @@ userSchema.pre('save', async function (done) {
     done();
 });
 
-const User = mongoose.model<UserDocModel, UserModel>('User', userSchema);
-
 userSchema.statics.build = (attrs: UserAttrs) => {
     return new User(attrs);
 }
+
+const User = mongoose.model<UserDocModel, UserModel>('User', userSchema);
 
 export {User};

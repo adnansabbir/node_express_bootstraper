@@ -5,9 +5,8 @@ import {app} from '../app';
 let mongo: MongoMemoryServer;
 beforeAll(async () => {
     mongo = new MongoMemoryServer();
-    const mongoUri = await mongo.getUri();
-
-    await mongoose.connect(mongoUri);
+    await mongo.start();
+    await mongoose.connect(mongo.getUri());
 });
 
 beforeEach(async () => {
