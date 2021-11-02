@@ -6,10 +6,9 @@ import cookieSession from 'cookie-session';
 
 
 import {MainRouter} from "./routes/main.route";
-import {connectToDb} from "./utilities/database.utility";
 import {errorHandler} from "./middlewares/errpr-handler.middleware";
-import {checkEnvData} from "./utilities/check-env-data.utility";
 import {currentUserCollector} from "./middlewares/current-user-collector.middleware";
+import {checkEnvData} from "./utilities/check-env-data.utility";
 
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
@@ -33,15 +32,5 @@ app.use(MainRouter);
 // Error handler
 app.use(errorHandler);
 
-const start = async () => {
-    checkEnvData();
-    await connectToDb();
-    console.log(`Connected to db`);
-    app.listen(port);
-}
-
-start().then(() => {
-    console.log(`Server running on port ${port}`);
-}).catch(e => {
-    console.log(`Error starting server`, e);
-})
+checkEnvData();
+export {app, port};

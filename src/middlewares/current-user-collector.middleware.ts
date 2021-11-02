@@ -13,7 +13,8 @@ export const currentUserCollector = (req: Request, res: Response, next: NextFunc
     if (!req.session?.jwt) return next();
     try {
         req.currentUser = verifyJwt(req.session.jwt);
+        next();
     } catch (e) {
+        next();
     }
-    next();
 }

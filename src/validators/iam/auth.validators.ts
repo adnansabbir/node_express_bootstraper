@@ -24,7 +24,7 @@ export const registerValidator = [
 export const tokenValidator = [
     body('grant_type')
         .trim()
-        .custom((grant_type: string)=> !!AllowedGrantTypes.hasOwnProperty(grant_type))
+        .custom((grantType: string)=> !!AllowedGrantTypes.hasOwnProperty(grantType))
         .withMessage('Invalid grant_type'),
 
     body('email')

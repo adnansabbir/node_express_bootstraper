@@ -2,7 +2,7 @@
   "name": "node_iam_bootstrapper",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
     "clean": "rimraf dist/*",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
@@ -11,7 +11,8 @@
     "start:dev": "cross-env NODE_ENV=development npm-run-all build start",
     "start:prod": "cross-env NODE_ENV=production npm-run-all build start",
     "start": "node .",
-    "serve": "cross-env NODE_ENV=development nodemon --watch src -e ts --exec ts-node -r tsconfig-paths/register ./src/app.ts",
+    "serve": "cross-env NODE_ENV=development nodemon --watch src -e ts --exec ts-node -r tsconfig-paths/register ./src/index.ts",
+    "serve:watch": "cross-env NODE_ENV=development nodemon --watch src -e ts --exec npm-run-all build start",
     "prestart": "npm run build"
   },
   "repository": {
