@@ -1,5 +1,5 @@
 {
-  "name": "house_manager_server",
+  "name": "node_iam_bootstrapper",
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
