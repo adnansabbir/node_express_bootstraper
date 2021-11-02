@@ -1,6 +1,7 @@
 import {connectToDb} from "./utilities/database.utility";
-import {app, port} from "./app";
+import {app} from "./app";
 
+const port = process.env.PORT || 5000;
 
 const start = async () => {
     await connectToDb();

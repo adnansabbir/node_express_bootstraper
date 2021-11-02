@@ -23,8 +23,6 @@ app.use(cookieSession({
     secure: false
 }));
 
-const port = process.env.PORT || 5000;
-
 app.use(currentUserCollector);
 // Router
 app.use(MainRouter);
@@ -33,4 +31,4 @@ app.use(MainRouter);
 app.use(errorHandler);
 
 checkEnvData();
-export {app, port};
+export {app};
