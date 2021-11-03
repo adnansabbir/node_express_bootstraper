@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import {UserDocModel} from "../models/user.model";
+import {UserDocModel} from "../../models/user.model";
 
 export interface TokenPayload {
     id: string;

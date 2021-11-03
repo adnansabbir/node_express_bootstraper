@@ -8,11 +8,11 @@ export const getBaseOption = (options?: SchemaOptions): SchemaOptions => {
         ...options,
         toJSON: {
             ...toJsonFuncGiven,
-            transform(doc: any, ret: any, options: any) {
+            transform(doc: any, ret: any, opt: any) {
+                ret.id = ret._id;
+                delete ret._id;
                 if (transformFuncGiven) {
-                    ret.id = ret._id;
-                    delete ret._id;
-                    transformFuncGiven(doc, ret, options);
+                    transformFuncGiven(doc, ret, opt);
                 }
             }
         },

@@ -1,6 +1,6 @@
 import {Request, Response} from 'express';
 import {User} from "../../models/user.model";
-import {getJwtToken, verifyJwt} from "../../utilities/jwt.utility";
+import {getJwtToken} from "../../utilities/helpers/jwt.utility";
 import {TokenGeneratorControllers} from "./token.controller";
 
 export const registerController = async (req: Request, res: Response) => {

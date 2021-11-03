@@ -1,6 +1,6 @@
-import {CustomError} from "./custom-error";
+import {AbstractBaseError} from "./abstract-base.error";
 
-export class NotAuthorisedError extends CustomError {
+export class NotAuthorisedError extends AbstractBaseError {
     statusCode = 401;
 
     constructor() {

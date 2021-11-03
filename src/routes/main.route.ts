@@ -1,6 +1,6 @@
 import express from "express";
 import {IAMRouter} from "./iam/iam.routes";
-import {NotFoundError} from "../errors/not-found.error";
+import {NotFoundError} from "../utilities/classes/errors/not-found.error";
 
 const router = express.Router();
 
