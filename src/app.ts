@@ -12,8 +12,8 @@ import {currentUserCollector} from "./middlewares/current-user-collector.middlew
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
 }
+export const app = express();
 
-const app = express();
 // Other middlewares
 app.use(express.json());
 app.use(cors({origin: "*"}));
@@ -28,5 +28,3 @@ app.use(MainRouter);
 
 // Error handler
 app.use(errorHandler);
-
-export {app};

@@ -38,3 +38,16 @@ export const tokenValidator = [
         .isLength({min: 6, max: 50})
         .withMessage('Password must be between 6 to 50 char long')
 ]
+
+export const resetPasswordValidator = [
+    body('email')
+        .isEmail()
+        .withMessage('Invalid email')
+        .custom(async email => {
+            const existingUser = await User.findOne({email});
+            if (!existingUser) {
+                return Promise.reject();
+            }
+        })
+        .withMessage(`No user found with given email`)
+]
