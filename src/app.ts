@@ -8,7 +8,6 @@ import cookieSession from 'cookie-session';
 import {MainRouter} from "./routes/main.route";
 import {errorHandler} from "./middlewares/error-handler.middleware";
 import {currentUserCollector} from "./middlewares/current-user-collector.middleware";
-import {checkEnvData} from "./utilities/helpers/check-env-data.utility";
 
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
@@ -30,5 +29,4 @@ app.use(MainRouter);
 // Error handler
 app.use(errorHandler);
 
-checkEnvData();
 export {app};
