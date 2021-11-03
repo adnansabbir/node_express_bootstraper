@@ -6,11 +6,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      PORT: "3000"
-      JWT_SIGN_KEY: "sample"
-      JWT_EXPIRATION_TIME_SEC: "300"
-    
     steps:
       - uses: actions/checkout@v2
-      - run: npm install && npm run test:ci
+      - name: npm install and run jest test
+        env:
+          PORT: "3000"
+          JWT_SIGN_KEY: "sample"
+          JWT_EXPIRATION_TIME_SEC: "300"
+        run: |
+          npm install
+          npm run test:ci
