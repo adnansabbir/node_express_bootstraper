@@ -19,7 +19,7 @@ describe('Test IAM Auth currentUser Route', () => {
         const response = await request(app)
             .get('/iam/auth/currentUser')
             .send()
-            .expect(201);
+            .expect(200);
 
         expect(response.body.currentUser).toBeNull();
     });
