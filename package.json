@@ -13,7 +13,8 @@
     "start": "node .",
     "serve": "cross-env NODE_ENV=development nodemon --watch src -e ts --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "serve:watch": "cross-env NODE_ENV=development nodemon --watch src -e ts --exec npm-run-all build start",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest --watchAll --no-cache",
+    "test:ci": "jest"
   },
   "jest": {
     "preset": "ts-jest",
