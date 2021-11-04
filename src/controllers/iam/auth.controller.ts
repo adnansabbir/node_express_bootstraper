@@ -24,7 +24,7 @@ export const tokenController = async (req: Request, res: Response) => {
     await TokenGeneratorControllers[grant_type](req, res);
 }
 
-export const passwordResetController = async (req: Request, res: Response) => {
+export const forgotPasswordController = async (req: Request, res: Response) => {
     const {email} = req.body;
 
     const resetToken = getResetToken();
@@ -51,6 +51,25 @@ export const passwordResetController = async (req: Request, res: Response) => {
         })
     );
 }
+
+export const resetPasswordController = async (req: Request, res: Response) => {
+    const {password} = req.body;
+    const {token} = req.params;
+    const user = await User.findOne({
+        'resetToken.token': token,
+        'resetToken.expiryDate': {$gte: new Date()}
+    });
+
+    if (!user) {
+        throw new BadRequestError('Invalid Token');
+    }
+
+    user.password = password;
+    user.resetToken = null;
+    await user.save();
+    res.status(200).send({message: "Password changed successfully"});
+}
+
 
 export const currentUserController = async (req: Request, res: Response) => {
     res.status(200).json({currentUser: req?.currentUser || null});

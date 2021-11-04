@@ -51,3 +51,10 @@ export const forgotPasswordValidator = [
         })
         .withMessage(`No user found with given email`)
 ]
+
+export const resetPasswordValidator = [
+    body('password')
+        .trim()
+        .isLength({min: 6, max: 50})
+        .withMessage('Password must be between 6 to 50 char long')
+]
