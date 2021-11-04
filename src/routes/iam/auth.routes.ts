@@ -20,7 +20,7 @@ const router = express.Router();
 router.post('/register', registerValidator, validateRequest, registerController);
 router.post('/token', tokenValidator, validateRequest, tokenController);
 router.post('/forgot-password', forgotPasswordValidator, validateRequest, forgotPasswordController);
-router.post('/reset-password/:token', resetPasswordValidator, validateRequest, resetPasswordController);
+router.post('/update-password/:token', resetPasswordValidator, validateRequest, resetPasswordController);
 router.get('/current-user', currentUserController);
 router.post('/logout', signOutController);
 
