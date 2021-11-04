@@ -3,6 +3,8 @@ import {User} from "../../models/user.model";
 import {getJwtToken} from "../../utilities/helpers/jwt.utility";
 import {TokenGeneratorControllers} from "./token.controller";
 import {EmailSenderService} from "../../services/EmailSender.service";
+import {EmailTemplate} from "../../models/email-template.model";
+import {getEmailTemplateWithVariables} from "../../utilities/helpers/email-template-formatter.utility";
 
 export const registerController = async (req: Request, res: Response) => {
     const {email, password} = req.body;
@@ -23,8 +25,21 @@ export const tokenController = async (req: Request, res: Response) => {
 
 export const passwordResetController = async (req: Request, res: Response) => {
     const {email} = req.body;
+    const emailTemplate = await EmailTemplate.findOne({name: 'reset-password-template'});
+    const emailTemplateWithData = getEmailTemplateWithVariables(emailTemplate.content, {
+        host: req.headers.host,
+        token_id: 'abc'
+    })
+    // console.log(req.headers.host);
     res.send({});
-    await EmailSenderService.SendMail(email, 'test_node_bootstraper@yopmail.com', 'Test', 'Hello world', 'Hello').then(console.log);
+    await EmailSenderService.SendMail(
+        email,
+        'test_node_bootstraper@yopmail.com',
+        'Rest Password',
+        emailTemplate.subject,
+        emailTemplateWithData);
+
+    // console.log(response);
 }
 
 export const currentUserController = async (req: Request, res: Response) => {
