@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import {UserDocModel} from "../../models/user.model";
+import {ServerConfig} from "../../services/config-generator";
 
 export interface TokenPayload {
     id: string;
@@ -10,7 +11,7 @@ export const getJwtToken = (user: UserDocModel): string => {
     return jwt.sign({
         id: user.id,
         email: user.email
-    }, process.env.JWT_SIGN_KEY, {expiresIn: parseInt(process.env.JWT_EXPIRATION_TIME_SEC, 10)});
+    }, process.env.JWT_SIGN_KEY, {expiresIn: ServerConfig.Config.jwtExpirationTimeInSec});
 }
 
 export const verifyJwt = (token: string): TokenPayload => {
