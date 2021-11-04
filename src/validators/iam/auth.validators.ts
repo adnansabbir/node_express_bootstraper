@@ -39,7 +39,7 @@ export const tokenValidator = [
         .withMessage('Password must be between 6 to 50 char long')
 ]
 
-export const resetPasswordValidator = [
+export const forgotPasswordValidator = [
     body('email')
         .isEmail()
         .withMessage('Invalid email')

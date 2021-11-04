@@ -1,24 +1,23 @@
 import mongoose, {Schema, Model, Document} from 'mongoose';
 import {HashText} from "../utilities/helpers/hash-text.utility";
 import {BaseModel, BaseMongooseDocModel, BaseMongooseSchema} from "./base-model/base.model";
+import {IResetToken, ResetTokenSchema} from "./reset-token.model";
 
 // An interface that describes the properties required to create a user
-interface UserAttrs {
+interface UserCreateAttrs {
     email: string,
     password: string
 }
 
 // An interface that describes properties a user model has
-interface UserModel extends BaseModel<UserDocModel, UserAttrs> {
-}
+interface UserModel extends BaseModel<UserDocModel, UserCreateAttrs> {}
 
 // An interface that describes the properties that user document has
-export interface UserDocModel extends BaseMongooseDocModel {
-    email: string,
-    password: string
+export interface UserDocModel extends BaseMongooseDocModel, UserCreateAttrs {
+    resetToken: IResetToken
 }
 
-const userSchema = new BaseMongooseSchema({
+const userSchema = new BaseMongooseSchema<UserDocModel>({
     email: {
         type: Schema.Types.String,
         required: true,
@@ -27,6 +26,10 @@ const userSchema = new BaseMongooseSchema({
     password: {
         type: Schema.Types.String,
         required: true
+    },
+    resetToken: {
+        type: ResetTokenSchema,
+        default: null
     }
 }, {
     toJSON: {
@@ -44,7 +47,7 @@ userSchema.pre('save', async function (done) {
     done();
 });
 
-userSchema.statics.build = (attrs: UserAttrs) => {
+userSchema.statics.build = (attrs: UserCreateAttrs) => {
     return new User(attrs);
 }
 

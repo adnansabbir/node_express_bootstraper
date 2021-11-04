@@ -2,7 +2,8 @@ const replaceAll = (originalString: string, replaceWord: string, withWord: strin
     return originalString.replace(new RegExp(replaceWord, 'g'), withWord);
 }
 
-export const getEmailTemplateWithVariables = (template: string, data: { [key: string]: string }): string => {
+export const getEmailTemplateWithVariables = (template: string, data?: { [key: string]: string }): string => {
+    if (!data) return template;
     Object.keys(data).forEach(key => {
         template = replaceAll(template, `{{${key}}}`, data[key]);
     });
