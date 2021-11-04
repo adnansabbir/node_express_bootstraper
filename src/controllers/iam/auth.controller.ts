@@ -59,7 +59,6 @@ export const resetPasswordController = async (req: Request, res: Response) => {
         'resetToken.token': token,
         'resetToken.expiryDate': {$gte: new Date()}
     });
-    console.log(user);
     if (!user) {
         throw new BadRequestError('Invalid Token');
     }
